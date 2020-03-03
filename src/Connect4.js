@@ -15,8 +15,8 @@ class Connect4 extends Component{
     }
 
     squareClicked(index){
-        // If statement ensures the game stops once a winner is determined
-        if(this.state.winner == 0){
+        // If statement ensures the game stops once a winner is determined.
+        if(this.state.winner === 0){
             let player_turn = this.state.player_turn
             let connect4board = this.state.connect4board
             let winner = this.state.winner
@@ -34,44 +34,44 @@ class Connect4 extends Component{
 
             let targetCol = []
 
-            // Find which column the player selected
-            if(index % 7 == 0){
+            // Find which column the player selected.
+            if(index % 7 === 0){
                 targetCol = col1;
-            }else if(index % 7 == 1){
+            }else if(index % 7 === 1){
                 targetCol = col2;
-            }else if(index % 7 == 2){
+            }else if(index % 7 === 2){
                 targetCol = col3;
-            }else if(index % 7 == 3){
+            }else if(index % 7 === 3){
                 targetCol = col4;
-            }else if(index % 7 == 4){
+            }else if(index % 7 === 4){
                 targetCol = col5;
-            }else if(index % 7 == 5){
+            }else if(index % 7 === 5){
                 targetCol = col6;
             }else{
                 targetCol = col7;
             }
 
-            // Fill the squares up
+            // Fill the squares from the bottom up.
             let i = 5
             while(i >= 0){
-                if(connect4board[targetCol[i]] == ""){
+                if(connect4board[targetCol[i]] === ""){
                     connect4board[targetCol[i]] = player_turn;
 
-                    //Alternate player turns
-                    player_turn = (player_turn == "X") ? "O": "X";
+                    //Alternate player turns.
+                    player_turn = (player_turn === "X") ? "O": "X";
                     moves = moves + 1;
                     break;
                 }
                 i = i - 1;
             }
 
-            // Checks vertical wins
+            // Checks vertical wins.
             for(let i = 0; i < 21; i++){
                 let win = [i, i+7, i+14, i+21]
-                if(connect4board[win[0]] === connect4board[win[1]] && connect4board[win[2]] == connect4board[win[3]] && connect4board[win[0]] == connect4board[win[2]] &&
+                if(connect4board[win[0]] === connect4board[win[1]] && connect4board[win[2]] === connect4board[win[3]] && connect4board[win[0]] === connect4board[win[2]] &&
                 connect4board[win[0]] !== ""){
                     winner = 1;
-                    if(connect4board[win[0]] == "O"){
+                    if(connect4board[win[0]] === "O"){
                         message = "Winner: Red in move number " + this.state.moves;
                     }else{
                         message = "Winner: Yellow in move number " + this.state.moves;
@@ -79,13 +79,13 @@ class Connect4 extends Component{
                 }
             }
 
-            // Checks horizontal wins
+            // Checks horizontal wins.
             for(let i = 0; i < 4; i++){
                 for(let j = 0; j < 6; j++){
                     if(connect4board[i + j*7] === connect4board[i+1 + j*7] && connect4board[i+2 + j*7] === connect4board[i+3 + j*7]
                     && connect4board[i + j*7] === connect4board[i+2 + j*7] && connect4board[i + j*7] !== ""){
                         winner = 1;
-                        if(connect4board[i + j*7] == "O"){
+                        if(connect4board[i + j*7] === "O"){
                             message = "Winner: Red in move number " + this.state.moves;
                         }else{
                             message = "Winner: Yellow in move number " + this.state.moves;
@@ -94,13 +94,13 @@ class Connect4 extends Component{
                 }
             }
 
-            // Checks diagonals descending left to right
+            // Checks diagonals descending left to right.
             for(let i = 0; i < 4; i++){
                 for(let j = 0; j < 3; j++){
                     if(connect4board[i + j*7] === connect4board[i + j*7 + 8] && connect4board[i + j*7 + 16] === connect4board[i + j*7 + 24]
                     && connect4board[i + j*7] === connect4board[i + j*7 + 16] && connect4board[i + j*7] !== ""){
                         winner = 1;
-                        if(connect4board[i + j*7] == "O"){
+                        if(connect4board[i + j*7] === "O"){
                             message = "Winner: Red in move number " + this.state.moves;
                         }else{
                             message = "Winner: Yellow in move number " + this.state.moves;
@@ -109,13 +109,13 @@ class Connect4 extends Component{
                 }
             }
 
-            // Checks diagonals ascending left to right
+            // Checks diagonals ascending left to right.
             for(let i = 3; i < 7; i++){
                 for(let j = 0; j < 3; j++){
                     if(connect4board[i + j*7] === connect4board[i + j*7 + 6] && connect4board[i + j*7 + 12] === connect4board[i + j*7 + 18]
                     && connect4board[i + j*7] === connect4board[i + j*7 + 12] && connect4board[i + j*7] !== ""){
                         winner = 1;
-                        if(connect4board[i + j*7] == "O"){
+                        if(connect4board[i + j*7] === "O"){
                             message = "Winner: Red in move number " + this.state.moves;
                         }else{
                             message = "Winner: Yellow in move number " + this.state.moves;
@@ -155,7 +155,7 @@ class Connect4 extends Component{
     createBoard(){
         let connect4board = [];
 
-        // 6 Rows and 7 Cols
+        // 6 Rows and 7 Cols.
         for(let i = 0; i < 42; i++){
             connect4board.push("");
         }
@@ -177,6 +177,7 @@ class Connect4 extends Component{
                 <h4 style={{color:'white', marginRight:'20px', marginLeft:'20px'}}><Link to={'/TicTacToe'} style={{ color: 'white'}}>Tic-Tac-Toe</Link></h4>
                 <h4 style={{color:'white', marginRight:'20px', marginLeft:'20px'}}><Link to={'/Connect4'} style={{ color: 'white'}}>Connect-4</Link></h4>
                 <h4 style={{color:'white', marginRight:'20px', marginLeft:'20px'}}><Link to={'/Calculator'} style={{ color: 'white'}}>Calculator</Link></h4>
+                <h4 style={{color:'white', marginRight:'20px', marginLeft:'20px'}}><Link to={'/Sorter'} style={{ color: 'white'}}>Sorter</Link></h4>
               </div>
               <header className="App-header">
                 <div style={{display:'flex'}}>

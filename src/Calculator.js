@@ -44,50 +44,77 @@ class Calculator extends Component{
     };
 
     addition = () => {
-        this.state.prevNumber = this.state.input;
-        this.setState({input: ""});
-        this.state.operator = "plus";
+        let prevNum = this.state.input;
+        let operator = "plus";
+
+        this.setState({
+            prevNumber: prevNum,
+            input: "",
+            operator: operator
+        })
     };
 
     subtraction = () => {
-        this.state.prevNumber = this.state.input;
-        this.setState({input: ""});
-        this.state.operator = "minus";
+        let prevNum = this.state.input;
+        let operator = "minus";
+
+        this.setState({
+            prevNumber: prevNum,
+            input: "",
+            operator: operator
+        })
     };
 
     multiplication = () => {
-        this.state.prevNumber = this.state.input;
-        this.setState({input: ""});
-        this.state.operator = "times";
+        let prevNum = this.state.input;
+        let operator = "times";
+
+        this.setState({
+            prevNumber: prevNum,
+            input: "",
+            operator: operator
+        })
     };
 
     division = () => {
-        this.state.prevNumber = this.state.input;
-        this.setState({input: ""});
-        this.state.operator = "divide";
+        let prevNum = this.state.input;
+        let operator = "divide";
+
+        this.setState({
+            prevNumber: prevNum,
+            input: "",
+            operator: operator
+        })
     };
 
+    // Get the input and check which operator the user has selected and perform
+    // based on that.
     equal = () => {
-        this.state.currentNumber = this.state.input;
+        //this.state.currentNumber = this.state.input;
+        let curr = this.state.input;
 
-        if(this.state.operator == "plus"){
+        if(this.state.operator === "plus"){
             this.setState({
-                input: parseFloat(this.state.prevNumber) + parseFloat(this.state.currentNumber)
+                input: parseFloat(this.state.prevNumber) + parseFloat(curr),
+                currentNumber: this.state.input
             });
         }
-        else if(this.state.operator == "minus"){
+        else if(this.state.operator === "minus"){
             this.setState({
-                input: parseFloat(this.state.prevNumber) - parseFloat(this.state.currentNumber)
+                input: parseFloat(this.state.prevNumber) - parseFloat(curr),
+                currentNumber: this.state.input
             });
         }
-        if(this.state.operator == "times"){
+        if(this.state.operator === "times"){
             this.setState({
-                input: parseFloat(this.state.prevNumber) * parseFloat(this.state.currentNumber)
+                input: parseFloat(this.state.prevNumber) * parseFloat(curr),
+                currentNumber: this.state.input
             });
         }
-        if(this.state.operator == "divide"){
+        if(this.state.operator === "divide"){
             this.setState({
-                input: parseFloat(this.state.prevNumber) / parseFloat(this.state.currentNumber)
+                input: parseFloat(this.state.prevNumber) / parseFloat(curr),
+                currentNumber: this.state.input
             });
         }
     };
@@ -104,6 +131,7 @@ class Calculator extends Component{
                 <h4 style={{color:'white', marginRight:'20px', marginLeft:'20px'}}><Link to={'/TicTacToe'} style={{ color: 'white'}}>Tic-Tac-Toe</Link></h4>
                 <h4 style={{color:'white', marginRight:'20px', marginLeft:'20px'}}><Link to={'/Connect4'} style={{ color: 'white'}}>Connect-4</Link></h4>
                 <h4 style={{color:'white', marginRight:'20px', marginLeft:'20px'}}><Link to={'/Calculator'} style={{ color: 'white'}}>Calculator</Link></h4>
+                <h4 style={{color:'white', marginRight:'20px', marginLeft:'20px'}}><Link to={'/Sorter'} style={{ color: 'white'}}>Sorter</Link></h4>
               </div>
               <header className="App-header">
                   <h1 style={{ color: 'orange'}}>Calculator</h1>
